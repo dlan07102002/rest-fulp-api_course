@@ -35,3 +35,41 @@ Cài đặt:
 - npm start
 
 => Gõ: http://127.0.0.1:3000
+
+
+# Buổi 2
+<!-- Schema, Data
+ -->
+<!-- Product: name, desc -->
+
+# Xây dựng resource / posts
+- title
+- content
+Xử lý
+- Lấy danh sách posts
+- Thêm post mới
+- Lấy chi tiết 1 post theo id
+
+# Các bước triển khai
+
+- Tạo model
+- Tạo controller
+- Tạo route
+
+## Authentication
+
+Controller: AuthController
+
+- /login
+- /logout
+- /register
+
+Model: user
+Schema: name, email, password
+
+Middleware
+
+- AuthMiddleWare => kiểm tra đăng nhập
+
+## Đăng ký tài khoản
+- Post Request => Lấy data => Validate? => Mã hóa mật khẩu (bcrypt) => Insert vào database => Tạo Access Token và Refresh Token => Trả về response (status, Token)

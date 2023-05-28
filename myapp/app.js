@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -7,6 +8,24 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
 var usersRouter = require("./routes/users");
+const mongoose = require('mongoose');
+
+const connectDb = ()=>{
+  mongoose
+  // k1GTYLZw248ZdC6x
+    .connect(
+      'mongodb://duclanweb:k1GTYLZw248ZdC6x@ac-gfkiu5j-shard-00-00.8zutfoo.mongodb.net:27017,ac-gfkiu5j-shard-00-01.8zutfoo.mongodb.net:27017,ac-gfkiu5j-shard-00-02.8zutfoo.mongodb.net:27017/?ssl=true&replicaSet=atlas-mmregm-shard-0&authSource=admin&retryWrites=true&w=majority',
+      { useNewUrlParser: true, useUnifiedTopology: true }
+    )
+    .then(() => {
+      console.log('connect success');
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  ;
+}
+connectDb();
 
 var app = express();
 
@@ -22,6 +41,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+
+
 //app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
@@ -43,5 +64,7 @@ app.use(function (err, req, res, next) {
 //Import module
 // const { getMessage } = require("./modules/functions");
 // getMessage();
+
+const {APP_NAME} = process.env;
 
 module.exports = app;
